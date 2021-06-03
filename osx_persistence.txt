@@ -33,16 +33,16 @@ XPC Services:
     /System/Library/XPCServices/ 
 
 Re-opened Apps: 
-    ~/Library/Preferences/ByHost/com.apple.loginwindow.[hardware UUID].plist 
+    ~/Library/Preferences/ByHost/com.apple.loginwindow.[hardware UUID].plist - (Used by OSX to resume user apps after restart)
 
 rc.common:
-    /etc/rc.common (edit the file) 
+    /etc/rc.common (edit the file)
 
 launchd.conf: 
     /etc/launchd.conf (edit the file) 
 
 Cron: 
-    crontab -l 
+    crontab -l - (list of all the cronjobs)
 
 Shell: 
     ~/.profile (not available in newer version of OSX I guess) 
