@@ -13,15 +13,16 @@ Launch Agents:
     /Library/LaunchAgents/ - for all user accounts
     /System/Library/LaunchAgents/ - native launch agents
 
-Startup Items: 
-    /Library/StartupItems/ 
-    /System/Library/StartupItems/ 
+Startup Items: (Affects all the users) 
+    /Library/StartupItems/ - 3rd party and user's startup items
+    /System/Library/StartupItems/  - Native startup items 
 
-Login Hooks: 
-    /private/var/root/Library/Preferences/com.apple.loginwindow.plist 
+Login Hooks (Depreciated): 
+    /private/var/root/Library/Preferences/com.apple.loginwindow.plist - add apps here to launch them at login
+    - sudo defaults write com.apple.logingwindow LoginHook /path/to/script
 
-Login Items: 
-    ~/Library/Preferences/com.apple.loginitems.plist 
+Login Items: (Affects specific user)
+    ~/Library/Preferences/com.apple.loginitems.plist - add apps here to launch them at login(per user)
     [application].app/Contents/Library/LoginItems/ (for sandboxed apps) and invoke SMLOGINITEMSETENABLED() 
 
 Login Items per Sandboxed Apps: 
