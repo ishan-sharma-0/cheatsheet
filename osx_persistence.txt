@@ -1,0 +1,71 @@
+Persistence in OS X 
+
+Kernel Extensions: 
+    /Library/Extensions/  - kexts for 3rd party apps
+    /System/Library/Extensions/ - native system kexts
+
+Launch Deamons: 
+    /Library/LaunchDaemons/  - 3rd party launch daemons
+    /System/Library/LaunchDaemons/  - Native launch daemons
+
+Launch Agents: 
+    ~/Library/LaunchAgents/ - for specific user
+    /Library/LaunchAgents/ - for all user accounts
+    /System/Library/LaunchAgents/ - native launch agents
+
+Startup Items: (Affects all the users) 
+    /Library/StartupItems/ - 3rd party and user's startup items
+    /System/Library/StartupItems/  - Native startup items 
+
+Login Hooks (Depreciated): 
+    /private/var/root/Library/Preferences/com.apple.loginwindow.plist - add apps here to launch them at login
+    - sudo defaults write com.apple.logingwindow LoginHook /path/to/script
+
+Login Items: (Affects specific user)
+    ~/Library/Preferences/com.apple.loginitems.plist - add apps here to launch them at login(per user)
+    [application].app/Contents/Library/LoginItems/ (for sandboxed apps) and invoke SMLOGINITEMSETENABLED() 
+
+Login Items per Sandboxed Apps: 
+    /private/var/db/launchd.db/com.apple.launchd.peruser.501/overrides.plist 
+
+XPC Services: 
+    [application].app/Contents/XPCServices/ 
+    /System/Library/XPCServices/ 
+
+Re-opened Apps: 
+    ~/Library/Preferences/ByHost/com.apple.loginwindow.[hardware UUID].plist - (Used by OSX to resume user apps after restart)
+
+rc.common:
+    /etc/rc.common (edit the file)
+
+launchd.conf: 
+    /etc/launchd.conf (edit the file) 
+
+Cron: 
+    crontab -l - (list of all the cronjobs)
+
+Shell: 
+    ~/.profile (not available in newer version of OSX I guess) 
+    ~/.bashrc (not available in newer version of OSX I guess) 
+    /etc/profile 
+    /etc/bashrc 
+    /etc/csh.* (rc, login, logout) 
+    /etc/ttys 
+
+Plugins 
+    /Library/DirectoryServices/PlugIns/*.dsplug (loaded by dspluginhelperd on reboot) 
+    /System/Library/Extensions/**/*.plugin (All 3 are Used by MIDIServer to load plugins) 
+    /Library/Audio/MIDI Drivers/**/*.plugin (can be used with launch agents for persistence) 
+    ~/Library/Audio/MIDI Drivers/**/*.plugin 
+
+Emond 
+    /etc/emond.d/rules/<plist> (create plist for, startup, periodic, auth.success, auth.failure events) 
+
+Spotlight Importers: 
+    /System/Library/Spotlight (create an .mdimporter)(heavily sandbox) 
+    ~/Library/Spotlight  
+    Inside an application bundle 
+
+Depreciated: 
+    ~/.MacOSX/environment.plist 
+    /Library/Preferences/com.apple.SystemLoginItems.plist 
